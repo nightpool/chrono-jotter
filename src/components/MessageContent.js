@@ -60,7 +60,8 @@ const inlineFormattingRegexs = [
   ['italic_under', /_(__.+?__)_(?!_)/],
   ['strike', /~~(.+?)~~/],
   ['spoiler', /\|\|(.+?)\|\|/],
-  ['link', /<?(https?:\/\/\S*[^.,:;"'\s])>?/],
+  ['link', /<(https?:\/\/[^\s>]*[^.,:;"'\s>])>/],
+  ['link', /(https?:\/\/\S*[^.,:;"'\s>])/],
 ];
 
 const Spoiler = ({children}) => {
