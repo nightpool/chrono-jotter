@@ -13,6 +13,9 @@ export const formatMessage = (content) => {
       currentBlockquote.push(formatInline(line.replace(/^> /, '')));
     } else {
       if (currentBlockquote.length) {
+        if (output.length) {
+          output.push("\n")
+        }
         output.push(<blockquote>{currentBlockquote}</blockquote>);
         currentBlockquote = [];
       }
