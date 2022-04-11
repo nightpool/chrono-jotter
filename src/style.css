@@ -39,6 +39,10 @@ h3 {
   text-decoration-thickness: 1px;
 }
 
+.session-list a:visited {
+  color: rebeccapurple;
+}
+
 .session-container {
   max-width: 40rem;
   margin: auto;
