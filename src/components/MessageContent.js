@@ -1,36 +1,31 @@
 import {useState} from 'preact/hooks';
 import classnames from 'classnames';
 
+const join = (seperator, array) =>
+  array.flatMap((element, index) => 
+    index == 0 ? [element] : [seperator, element]
+  );
+
 export const formatMessage = (content) => {
   const output = [];
   let currentBlockquote = [];
 
   content.split("\n").forEach(line => {
     if (line.startsWith("> ")) {
-      if (currentBlockquote.length) {
-        currentBlockquote.push("\n");
-      }
       currentBlockquote.push(formatInline(line.replace(/^> /, '')));
     } else {
       if (currentBlockquote.length) {
-        if (output.length) {
-          output.push("\n")
-        }
-        output.push(<blockquote>{currentBlockquote}</blockquote>);
+        output.push(<blockquote>{join("\n", currentBlockquote)}</blockquote>);
         currentBlockquote = [];
-      }
-
-      if (output.length) {
-        output.push("\n")
       }
 
       output.push(formatInline(line));
     }
   });
 
-  currentBlockquote.length && output.push(<blockquote>{currentBlockquote}</blockquote>);
+  currentBlockquote.length && output.push(<blockquote>{join("\n", currentBlockquote)}</blockquote>);
 
-  return output;
+  return join("\n", output);
 }
 
 const formatInline = (message) => {
@@ -38,18 +33,19 @@ const formatInline = (message) => {
   let currentIndex = 0;
   for (const match of message.matchAll(combinedRegexp)) {
     output.push(message.substring(currentIndex, match.index));
-    const matchedString = match[0];
-    const formattingIndex = inlineFormattingRegexs.findIndex((_, index) => 
-      Boolean(match[index + 1])
-    );
-    const capture = match[formattingIndex + 1];
-    const [formattingType] = inlineFormattingRegexs[formattingIndex];
+
+    const [matchedString, ...captureGroups] = match;
+    const matchedCaptureGroup = captureGroups.findIndex((group) => Boolean(group));
+
+    const capture = captureGroups[matchedCaptureGroup];
+    const [formattingType] = inlineFormattingRegexs[matchedCaptureGroup];
+
     output.push(formatting[formattingType](capture));
-    currentIndex = match.index + match[0].length;
+    currentIndex = match.index + matchedString.length;
   };
   output.push(message.substring(currentIndex, message.length));
   return output;
-}
+};
 
 const inlineFormattingRegexs = [
   ['bold', /\*\*(.+?)\*\*(?!\*)/],
