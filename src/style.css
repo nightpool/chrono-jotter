@@ -2,9 +2,14 @@ html, body {
   font: 16px/1.25 'Helvetica Neue', arial, sans-serif;
   font-weight: 400;
   color: white;
-  background-color: #170202;
   scroll-padding-top: 10vh;
   scroll-behavior: smooth;
+
+  background:
+    linear-gradient(black, hsl(0deg 84% 7%) 100vh, hsl(0deg 84% 5%))
+    top / auto 200vh
+    no-repeat
+    , hsl(0deg 84% 5%);
 }
 
 a {
