@@ -34,14 +34,15 @@ const sessions = [
   },
 ].map((session, i) => ({
   url: `/part-${i + 1}`,
-  title: `Part ${i + 1}`,
+  title: `Chrono Jotter: Part ${i + 1}`,
   pageTitle: `Part ${i + 1}`,
   ...session,
 }));
 
 const pages = [{
   url: '/',
-  title: 'Index',
+  title: 'Chrono Jotter',
+  subtitle: 'Lingering Remembrances: The Chrono Jotter',
   sessions: sessions,
 }, {
   url: '/character-list',

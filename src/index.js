@@ -4,9 +4,10 @@ import {MessageGroup} from './components/MessageGroup.js';
 const Index = ({sessions}) =>
   <div class="index">
     <h1>Chrono Jotter</h1>
+    <img width="1080" height="608" class="hero-image" src="/assets/banner.png" />
     <ul class="session-list">
       {sessions.map(s => 
-        <a href={s.url}><li>{s.title}: <i>{s.subtitle}</i></li></a>
+        <a href={s.url}><li>{s.pageTitle}: <i>{s.subtitle}</i></li></a>
       )}
     </ul>
   </div>;
