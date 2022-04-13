@@ -27,12 +27,12 @@ const sessions = [
     start: "961417457719967826",
   }, {
     subtitle: "My GF has dismembered me more than your GF",
-    start: "962138603293655102",
+    start: "962138499576905760",
   }, {
     subtitle: "In which we finally get the chance to start working on that Recall Point backlog",
     start: "962837829082288168",
   }, {
-    subtitle: "Ran tries to gather some evidence, and receives a surprise.",
+    subtitle: "In which we are reminded that, yes, she still eats paper.",
     start: "963608795953631302",
   },
 ].map((session, i, allSessions) => ({
