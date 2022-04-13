@@ -56,7 +56,7 @@ h3 {
 }
 
 .session-list a:visited {
-  color: rebeccapurple;
+  color: hsl(270deg 49% 72%);
 }
 
 .session-container {
