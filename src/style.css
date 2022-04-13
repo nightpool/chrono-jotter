@@ -79,7 +79,7 @@ h3 {
   grid-template-areas:
     "reply reply"
     "avatar nick"
-    "avatar messages"; 
+    "avatar messages";
   grid-column-gap: 0.5rem;
   word-break: break-word;
   padding: 0.75rem;

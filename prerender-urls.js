@@ -29,13 +29,17 @@ const sessions = [
     subtitle: "My GF has dismembered me more than your GF",
     start: "962138603293655102",
   }, {
-    subtitle: "In which we finally get the chance to start going through the Recall Point backlog",
+    subtitle: "In which we finally get the chance to start working on that Recall Point backlog",
     start: "962837829082288168",
+  }, {
+    subtitle: "Ran tries to gather some evidence, and receives a surprise.",
+    start: "963608795953631302",
   },
-].map((session, i) => ({
+].map((session, i, allSessions) => ({
   url: `/part-${i + 1}`,
   title: `Chrono Jotter: Part ${i + 1}`,
   pageTitle: `Part ${i + 1}`,
+  allSessions,
   ...session,
 }));
 
