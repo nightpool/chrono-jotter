@@ -114,23 +114,23 @@ h3 {
   display: flex;
   color: #ffffff66;
   font-size: 0.75rem;
-  line-height: 1;
+  line-height: normal;
   align-items: center;
   margin-bottom: 0.25rem;
+  min-width: 0;
 }
 
 .message_group-reply--preview a {
   display: flex;
-  overflow: clip;
+  align-items: center;
+  overflow: hidden;
   text-decoration: none;
-  overflow-clip-margin: 1rem;
 }
 
 .message_group-reply--preview a span {
   text-overflow: ellipsis;
-  overflow: clip;
+  overflow: hidden;
   white-space: nowrap;
-  overflow-clip-margin: 1rem;
 }
 
 .message_group-reply img {
