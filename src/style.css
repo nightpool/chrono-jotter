@@ -26,25 +26,60 @@ h3 {
 
 .index {
   max-width: 40rem;
-  margin: 2rem auto;
+  margin: 3rem auto;
+}
+
+.index h1 {
+  margin: 1rem;
 }
 
 .hero-image {
   width: 100%;
   height: auto;
-  margin: 2rem auto;
+  margin: 1rem auto;
   display: block;
+  box-sizing: border-box;
+  border: 1px solid white;
+}
+
+.game-description {
+  margin: 1rem auto;
+  max-width: 35rem;
+  color: #aaa4a4;
+}
+
+.cw {
+  box-sizing: border-box;
+  max-width: 30rem;
+  margin: 2rem auto;
+  border: 1px solid hsl(0deg 100% 35%);
+  padding: 0.5rem 1rem;
+  background-color: hsl(0deg 80% 15%);
 }
 
 .session-list {
   list-style: none;
   margin: auto;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
+  position: relative;
+  padding-left: 2rem;
 }
 
 .session-list li {
   margin-block: 0.5rem;
   padding: 1rem;
+}
+
+.session-list li::before {
+  content: '➤';
+  position: absolute;
+  left: calc(2rem - 1ch);
+  font-size: .7em;
+  line-height: calc(1.25 / .7);
+}
+
+.session-list a:first-child li {
+  padding-top: 0;
 }
 
 .session-list i {
