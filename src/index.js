@@ -24,9 +24,7 @@ const secondsBetween = (message, lastMessage) =>
     - (BigInt(lastMessage.id) >> 22n)
   ) / 1000;
 
-const Session = (props) => {
-  const {pageTitle, subtitle, messages} = props;
-
+const Session = ({pageTitle, subtitle, messages, cw}) => {
   const groupedMessages = [];
   let currentGroup = [];
   messages.forEach((message, i) => {
@@ -49,6 +47,7 @@ const Session = (props) => {
   return <div class="session-container">
     <h1>{pageTitle}</h1>
     <h3>{subtitle}</h3>
+    {cw && <div class="cw">{cw}</div>}
     <div class="log">
       {groupedMessages.map(messages => 
         <MessageGroup messages={messages} />

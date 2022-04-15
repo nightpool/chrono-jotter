@@ -34,6 +34,10 @@ const sessions = [
   }, {
     subtitle: "In which we are reminded that, yes, she still eats paper.",
     start: "963608795953631302",
+  }, {
+    subtitle: "turns out murdergames aren't always lighthearted fun",
+    start: "964300186153283677",
+    cw: 'Content warning: This chapter contains graphic descriptions of suicide.',
   },
 ].map((session, i, allSessions) => ({
   url: `/part-${i + 1}`,
