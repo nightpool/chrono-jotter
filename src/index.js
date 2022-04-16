@@ -46,7 +46,6 @@ const Session = ({pageTitle, subtitle, messages, cw}) => {
     }
   });
   currentGroup.length && groupedMessages.push(currentGroup);
-  console.log(groupedMessages);
 
   return <div class="session-container">
     <h1>{pageTitle}</h1>
