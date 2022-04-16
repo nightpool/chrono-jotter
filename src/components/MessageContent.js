@@ -58,6 +58,7 @@ const inlineFormattingRegexs = [
   ['spoiler', /\|\|(.+?)\|\|/],
   ['link', /<(https?:\/\/[^\s>]*[^.,:;"'\s>])>/],
   ['link', /(https?:\/\/\S*[^.,:;"'\s>])/],
+  ['emoji', /<:(\w+:\d+)>/]
 ];
 
 const Spoiler = ({children}) => {
@@ -80,6 +81,10 @@ const formatting = {
   strike:       s => <s>{formatInline(s)}</s>,
   spoiler:      s => <Spoiler>{formatInline(s)}</Spoiler>,
   link:         s => <a href={s}>{s}</a>,
+  emoji:        s => {
+    const [title, id] = s.split(':');
+    return <img alt={title} title={title} src={`https://cdn.discordapp.com/emojis/${id}.png`} style="height: 1rem; vertical-align: bottom;" />;
+  },
 };
 
 const combinedRegexp = new RegExp(Object.values(inlineFormattingRegexs).flat().map(i => `(?:${i.source})`).join('|'), 'g');
