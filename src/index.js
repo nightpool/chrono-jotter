@@ -27,6 +27,7 @@ const secondsBetween = (message, lastMessage) =>
 const Session = ({pageTitle, subtitle, messages, cw}) => {
   const groupedMessages = [];
   let currentGroup = [];
+  currentGroup.showTimestamp = true;
   messages.forEach((message, i) => {
     const lastMessage = messages[i - 1];
     const sameGroup = !lastMessage || (
@@ -40,9 +41,12 @@ const Session = ({pageTitle, subtitle, messages, cw}) => {
     } else {
       currentGroup.length && groupedMessages.push(currentGroup);
       currentGroup = [message];
+      currentGroup.showTimestamp =
+        !lastMessage || secondsBetween(message, lastMessage) > (15 * 60);
     }
   });
   currentGroup.length && groupedMessages.push(currentGroup);
+  console.log(groupedMessages);
 
   return <div class="session-container">
     <h1>{pageTitle}</h1>
@@ -50,7 +54,7 @@ const Session = ({pageTitle, subtitle, messages, cw}) => {
     {cw && <div class="cw">{cw}</div>}
     <div class="log">
       {groupedMessages.map(messages => 
-        <MessageGroup messages={messages} />
+        <MessageGroup messages={messages} showTimestamp={messages.showTimestamp} />
       )}
     </div>
   </div>;
