@@ -38,6 +38,9 @@ const sessions = [
     subtitle: "turns out murdergames aren't always lighthearted fun",
     start: "964300186153283677",
     cw: 'Content warning: This chapter contains graphic descriptions of suicide.',
+  }, {
+    subtitle: "In which there is LOTS OF INTERPERSONAL DRAMA hoo boy.",
+    start: "964654233649545257",
   },
 ].map((session, i, allSessions) => ({
   url: `/part-${i + 1}`,
