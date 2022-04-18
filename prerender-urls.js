@@ -41,7 +41,10 @@ const sessions = [
   }, {
     subtitle: "In which there is LOTS OF INTERPERSONAL DRAMA hoo boy.",
     start: "964654233649545257",
-  },
+  }, {
+    subtitle: "Did you know? Ran once beat up twelve orphans to steal their bus tickets.",
+    start: "965376874593267813"
+  }
 ].map((session, i, allSessions) => ({
   url: `/part-${i + 1}`,
   title: `Chrono Jotter: Part ${i + 1}`,
