@@ -100,7 +100,7 @@ h3 {
   padding: 1rem;
 }
 
-.log {
+.message_list {
   display: flex;
   flex-direction: column;
 }
@@ -270,6 +270,7 @@ h3 {
   background-color: #202225;
   cursor: pointer;
   border-radius: 3px;
+  font: inherit;
 }
 
 .spoiler--showing {
@@ -277,7 +278,7 @@ h3 {
   color: white;
 }
 
-.log > time {
+.message_list > time {
   color: #ffffff66;
   font-size: 0.8rem;
   text-align: center;
@@ -292,7 +293,7 @@ h3 {
   margin: 1rem auto;
 }
 
-.log > time:before, .log > time:after {
+.message_list > time:before, .message_list > time:after {
   border-top: 1px solid currentColor;
   content: '';
   flex-grow: 1;

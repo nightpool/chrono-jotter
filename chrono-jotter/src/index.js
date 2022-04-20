@@ -1,5 +1,5 @@
 import './style';
-import {MessageGroup} from './components/MessageGroup.js';
+import {MessageList} from './components/MessageList.js';
 
 const Index = ({sessions}) =>
   <div class="index">
@@ -18,43 +18,13 @@ const Index = ({sessions}) =>
     </ul>
   </div>;
 
-const secondsBetween = (message, lastMessage) => 
-  Number(
-    (BigInt(message.id) >> 22n)
-    - (BigInt(lastMessage.id) >> 22n)
-  ) / 1000;
-
 const Session = ({pageTitle, subtitle, messages, cw}) => {
-  const groupedMessages = [];
-  let currentGroup = [];
-  currentGroup.showTimestamp = true;
-  messages.forEach((message, i) => {
-    const lastMessage = messages[i - 1];
-    const sameGroup = !lastMessage || (
-      lastMessage.author.id == message.author.id &&
-      secondsBetween(message, lastMessage) < 60 &&
-      !message.reference
-    );
-
-    if (sameGroup) {
-      currentGroup.push(message)
-    } else {
-      currentGroup.length && groupedMessages.push(currentGroup);
-      currentGroup = [message];
-      currentGroup.showTimestamp =
-        !lastMessage || secondsBetween(message, lastMessage) > (15 * 60);
-    }
-  });
-  currentGroup.length && groupedMessages.push(currentGroup);
-
   return <div class="session-container">
     <h1>{pageTitle}</h1>
     <h3>{subtitle}</h3>
     {cw && <div class="cw">{cw}</div>}
     <div class="log">
-      {groupedMessages.map(messages => 
-        <MessageGroup messages={messages} showTimestamp={messages.showTimestamp} />
-      )}
+      <MessageList messages={messages} />
     </div>
   </div>;
 }
