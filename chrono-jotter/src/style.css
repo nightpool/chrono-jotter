@@ -1,0 +1,7 @@
+html, body {
+  background:
+    linear-gradient(black, hsl(0deg 84% 7%) 100vh, hsl(0deg 84% 5%))
+    top / auto 200vh
+    no-repeat
+    , hsl(0deg 84% 5%);
+}

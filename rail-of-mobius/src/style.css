@@ -1,0 +1,11 @@
+html, body {
+  background: 
+    linear-gradient(black, hsl(234deg 80% 10%) 100vh, hsl(234deg 80% 8%))
+    top / auto 200vh
+    no-repeat
+    , hsl(234deg 80% 8%);
+}
+
+.message_group {
+  background-color: #36363e;
+}

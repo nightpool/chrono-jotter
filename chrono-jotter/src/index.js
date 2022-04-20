@@ -1,4 +1,5 @@
 import 'components/style';
+import './style';
 import {MessageList} from 'components/MessageList.js';
 
 const Index = ({sessions}) =>
