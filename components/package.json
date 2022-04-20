@@ -1,0 +1,16 @@
+{
+  "name": "components",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Shared components for discord log rendering",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nightpool/chrono-jotter.git"
+  },
+  "author": "nightpool",
+  "license": "AGPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/nightpool/chrono-jotter/issues"
+  },
+  "homepage": "https://github.com/nightpool/chrono-jotter#readme"
+}
