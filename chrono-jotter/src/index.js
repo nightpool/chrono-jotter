@@ -1,5 +1,5 @@
-import './style';
-import {MessageList} from './components/MessageList.js';
+import 'components/style';
+import {MessageList} from 'components/MessageList.js';
 
 const Index = ({sessions}) =>
   <div class="index">
