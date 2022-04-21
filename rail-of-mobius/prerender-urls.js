@@ -60,7 +60,7 @@ const sessions = [
 const pages = [{
   url: '/',
   title: 'Rail of Mobius',
-  subtitle: 'Underwater fun times',
+  subtitle: 'Deep Blue Prison- The Nonexistent 13th Boxcar- RAIL OF MOBIUS',
   sessions: sessions,
 }];
 

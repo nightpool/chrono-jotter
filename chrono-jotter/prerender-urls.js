@@ -43,7 +43,10 @@ const sessions = [
     start: "964654233649545257",
   }, {
     subtitle: "Did you know? Ran once beat up twelve orphans to steal their bus tickets.",
-    start: "965376874593267813"
+    start: "965376874593267813",
+  }, {
+    subtitle: "In which Ran teaches Tama to do dog tricks. Also, lots of screaming, and a double whammy",
+    start: "966474012295299145",
   }
 ].map((session, i, allSessions) => ({
   url: `/part-${i + 1}`,
