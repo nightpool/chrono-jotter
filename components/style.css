@@ -219,14 +219,14 @@ h3 {
   background-color: #bc6e0066;
 }
 
-.message p {
-  white-space: pre-line;
-  margin-block: 0.5rem;
-}
-
 .message > img {
   width: 100%;
   display: block;
+  margin-block: 0.5rem;
+}
+
+.message-content {
+  white-space: pre-line;
   margin-block: 0.5rem;
 }
 

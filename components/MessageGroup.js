@@ -10,7 +10,7 @@ const Attachment = ({url}) => <img src={url} loading="lazy" fetchpriority="low" 
 
 const Message = ({content, reactions, attachments, embeds, id}) => {
   return <div class="message" id={id}>
-    <p>{formatMessage(content)}</p>
+    <p class="message-content">{formatMessage(content)}</p>
     {attachments.length ? attachments.map(a => <Attachment {...a}/>) : null}
     {/*embeds && embeds.map(e => <Embed {...e}/>)*/}
     {reactions.length ? 
