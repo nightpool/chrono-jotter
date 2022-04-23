@@ -49,7 +49,7 @@ const formatInline = (message) => {
 
 const inlineFormattingRegexs = [
   ['bold', /\*\*(.+?)\*\*(?!\*)/],
-  ['italic', /\*(?!\s)(.+?)(?<!\s|\*)\*(?!\*)/],
+  ['italic', /\*(?!\s)(.*?(?:[^\s*]))\*(?!\*)/],
   ['italic', /_([^_]+)_(?!\w)/],
   ['italic_bold', /\*(\*\*.+?\*\*)\*(?!\*)/],
   ['underline', /__(.+?)__(?!_)/],
