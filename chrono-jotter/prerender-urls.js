@@ -53,6 +53,9 @@ const sessions = [
   }, {
     subtitle: "Excuse you, Santa Clause is *extremely* real, actually.",
     start: "968647589421522946",
+  }, {
+    subtitle: "It's fine! Nobody's getting stabbed to death at all! Shhhhhh!",
+    start: "970427163461443726",
   }
 ].map((session, i, allSessions) => ({
   url: `/part-${i + 1}`,
