@@ -56,6 +56,9 @@ const sessions = [
   }, {
     subtitle: "It's fine! Nobody's getting stabbed to death at all! Shhhhhh!",
     start: "970427163461443726",
+  }, {
+    subtitle: "In which Ran and Ann share their first kiss!",
+    start: "974091471445692508",
   }
 ].map((session, i, allSessions) => ({
   url: `/part-${i + 1}`,
