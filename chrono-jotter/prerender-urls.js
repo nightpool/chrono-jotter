@@ -23,7 +23,7 @@ const sessions = [
     subtitle: "In which we enjoy a picnic with biscuits and tea.",
     start: "960347600714870874",
   }, {
-    subtitle: "In which we enjoy more free time and socialization, and reminisce about that time one of our got arms chopped off.",
+    subtitle: "In which we enjoy more free time and socialization, and reminisce about that time one of our arms got chopped off.",
     start: "961417457719967826",
   }, {
     subtitle: "My GF has dismembered me more than your GF",
@@ -66,11 +66,11 @@ const sessions = [
     subtitle: "The End.",
     start: "975894423751778336",
   }
-].map((session, i, allSessions) => ({
+].map((session, i) => ({
   url: `/part-${i + 1}`,
   title: `Chrono Jotter: Part ${i + 1}`,
   pageTitle: `Part ${i + 1}`,
-  allSessions,
+  index: i,
   ...session,
 }));
 
@@ -108,7 +108,8 @@ channelExport.messages.forEach(message => {
 module.exports = () => [
   ...sessions.map((session, i) => ({
     ...session,
-    messages: sessionMessages[i]
+    messages: sessionMessages[i],
+    allSessions: sessions,
   })),
   ...pages,
 ];

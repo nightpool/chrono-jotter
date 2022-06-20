@@ -1,6 +1,7 @@
 import 'components/style';
 import './style';
 import {MessageList} from 'components/MessageList.js';
+import classnames from 'classnames';
 
 const Index = ({sessions}) =>
   <div class="index">
@@ -19,7 +20,17 @@ const Index = ({sessions}) =>
     </ul>
   </div>;
 
-const Session = ({pageTitle, subtitle, messages, cw}) => {
+const SessionNav = ({session, type}) =>
+  !session ? <div/> :
+  <a class={classnames('nav-link', `nav-link--${type}`)} href={session.url}>
+    {type === 'next' ?
+      <div class="nav-link_header">Next: <strong>{session.pageTitle}</strong></div> :
+      <div class="nav-link_header">Previously: <strong>{session.pageTitle}</strong></div>
+    }
+    <i>{session.subtitle}</i>
+  </a>;
+
+const Session = ({pageTitle, subtitle, messages, cw, index, allSessions}) => {
   return <div class="session-container">
     <h1>{pageTitle}</h1>
     <h3>{subtitle}</h3>
@@ -27,6 +38,10 @@ const Session = ({pageTitle, subtitle, messages, cw}) => {
     <div class="log">
       <MessageList messages={messages} />
     </div>
+    <nav class="session-nav">
+      <SessionNav session={allSessions[index - 1]} type={'previous'} />
+      <SessionNav session={allSessions[index + 1]} type={'next'} />
+    </nav>
   </div>;
 }
 

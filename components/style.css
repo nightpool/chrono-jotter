@@ -94,6 +94,81 @@ h3 {
   padding: 1rem;
 }
 
+.session-nav {
+  display: flex;
+  gap: 2rem;
+  margin: 5rem 0 2rem;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap-reverse;
+  box-sizing: border-box;
+}
+
+@media (min-width: 60rem) {
+  .session-nav {
+    width: 50rem;
+    position: relative;
+    left: -5rem;
+  }
+}
+
+.nav-link {
+  display: block;
+  border: 2px solid hsl(0deg 80% 15%);
+  border-radius: 1rem;
+  padding: 1rem;
+  max-width: 17rem;
+  background-color: #ff00000d;
+  position: relative;
+  box-sizing: border-box;
+  color: inherit;
+  text-decoration: none;
+}
+
+@media (max-width: 40rem) {
+  .session-nav {
+    margin: 2rem 0;
+    gap: 1rem;
+  }
+}
+
+.nav-link::after {
+  position: absolute;
+  top: calc(50% - 5px);
+  content: '';
+  border-top: 5px solid currentColor;
+  border-right: 5px solid currentColor;
+  width: 10px;
+  height: 10px;
+}
+
+.nav-link--next {
+  margin-left: auto;
+  padding-right: 2.5rem;
+  text-align: right;
+}
+.nav-link--previous {
+  margin-right: auto;
+  padding-left: 2.5rem;
+}
+
+.nav-link--next::after {
+  right: 0.75rem;
+  transform: rotate(45deg);
+}
+.nav-link--previous::after {
+  left: 0.75rem;
+  transform: rotate(calc(-45deg + -90deg));
+}
+
+.nav-link_header {
+  margin-bottom: 0.5rem;
+}
+
+.nav-link i {
+  font-size: 0.9em;
+}
+
 .message_list {
   display: flex;
   flex-direction: column;
@@ -119,7 +194,7 @@ h3 {
 
 .message_group--chat {
   --avatar-width: 1.5rem;
-  max-width: 50%;
+  max-width: 55%;
   grid-template-areas:
     "reply reply"
     "nick avatar"
