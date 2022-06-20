@@ -29,10 +29,13 @@ export const formatMessage = (content) => {
 const formatCodeblock = (lines) => {
   const output = [];
   const startingLine = lines.shift();
-  const [_, languageCode, rest] = startingLine.match(/^```(\w*)(.*)/);
+  const languageMatch = startingLine.match(/^```(\w*)$/);
+  let languageCode = 'normal';
 
-  if (rest.length) {
-    output.push(rest);
+  if (languageMatch) {
+    languageCode = languageMatch[1];
+  } else {
+    lines.unshift(startingLine.replace(/^```/, ''));
   }
 
   const consumedLines = [];
@@ -89,7 +92,7 @@ const codeblockLanguages = {
       return line;
     }
   },
-  normal: () => () => line,
+  normal: () => line => line,
 };
 
 const formatBlockquote = (lines) => {
