@@ -8,24 +8,97 @@ const join = (seperator, array) =>
 
 export const formatMessage = (content) => {
   const output = [];
-  let currentBlockquote = [];
 
-  content.split("\n").forEach(line => {
-    if (line.startsWith("> ")) {
-      currentBlockquote.push(formatInline(line.replace(/^> /, '')));
+  const lines = content.split("\n");
+  while (lines.length) {
+    const peekLine = lines[0];
+
+    if (peekLine.startsWith("> ")) {
+      output.push(formatBlockquote(lines));
+    } else if (peekLine.startsWith('```')) {
+      output.push(formatCodeblock(lines));
     } else {
-      if (currentBlockquote.length) {
-        output.push(<blockquote>{join("\n", currentBlockquote)}</blockquote>);
-        currentBlockquote = [];
-      }
-
-      output.push(formatInline(line));
+      output.push(formatInline(lines.shift()));
     }
-  });
-
-  currentBlockquote.length && output.push(<blockquote>{join("\n", currentBlockquote)}</blockquote>);
+  };
 
   return join("\n", output);
+}
+
+
+const formatCodeblock = (lines) => {
+  const output = [];
+  const startingLine = lines.shift();
+  const [_, languageCode, rest] = startingLine.match(/^```(\w*)(.*)/);
+
+  if (rest.length) {
+    output.push(rest);
+  }
+
+  const consumedLines = [];
+  const formatter = (codeblockLanguages[languageCode] || codeblockLanguages.normal)();
+  let foundEndMarker = false;
+  while (lines.length) {
+    const line = lines.shift();
+    if (line.includes('```')) {
+      foundEndMarker = true;
+      const [content, rest] = line.split('```');
+      content && output.push(formatter(content));
+      rest && lines.unshift(rest);
+      break;
+    } else {
+      output.push(formatter(line));
+    }
+  }
+
+  if (!foundEndMarker) {
+    lines.unshift(...consumedLines);
+    return startingLine;
+  }
+
+  return <pre><code>{join('\n', output)}</code></pre>;
+}
+
+const codeblockLanguages = {
+  ini: () => {
+    let isHeader = false;
+    return line => {
+      if (isHeader) {
+        const [header, rest] = line.split("]");
+        if (rest) {
+          isHeader = false;
+        }
+        return <><span style={{color: 'teal'}}>{header}]</span>{rest}</>;
+      } else {
+        const [text, header] = line.split("[");
+        if (header) {
+          isHeader = true;
+          return <>{text}<span style={{color: 'teal'}}>[{header}</span></>;
+        } else {
+          return text;
+        }
+      }
+    };
+  },
+  diff: () => (line) => {
+    if (line.startsWith('-')) {
+      return <span style={{color: '#dc322f'}}>{line}</span>;
+    } else if (line.startsWith('+')) {
+      return <span style={{color: 'green'}}>{line}</span>;
+    } else {
+      return line;
+    }
+  },
+  normal: () => () => line,
+};
+
+const formatBlockquote = (lines) => {
+  const output = [];
+  while (lines.length && lines[0].startsWith('> ')) {
+    output.push(formatInline(lines.shift().replace(/^> /, '')));
+  }
+
+  return <blockquote>{join("\n", output)}</blockquote>;
 }
 
 const formatInline = (message) => {

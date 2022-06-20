@@ -230,6 +230,15 @@ h3 {
   margin-block: 0.5rem;
 }
 
+.message pre {
+  display: inline-block;
+  background: #222;
+  padding: 1rem;
+  white-space: pre-wrap;
+  border: black 1px solid;
+  border-radius: 7px;
+}
+
 .message blockquote {
   border-left: 3px solid #50545B;
   margin: 0.5rem;
