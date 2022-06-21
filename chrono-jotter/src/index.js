@@ -1,5 +1,6 @@
 import 'components/style';
 import './style';
+import {useEffect} from 'preact/hooks';
 import {MessageList} from 'components/MessageList.js';
 import classnames from 'classnames';
 
@@ -30,7 +31,23 @@ const SessionNav = ({session, type}) =>
     <i>{session.subtitle}</i>
   </a>;
 
+const copyHandler = (event) => {
+  const formattedLogText = window.getSelection().toString().
+    replaceAll(/^[ \t]+/gm, '').
+    replaceAll(/^\w+: /gm, '');
+  event.clipboardData.setData('text/plain', formattedLogText);
+  event.preventDefault();
+};
+
 const Session = ({pageTitle, subtitle, messages, cw, index, allSessions}) => {
+  useEffect(() => {
+    if (window.location.search.includes("plaintextcopy")) {
+      document.addEventListener('copy', copyHandler);
+      return () => {
+        document.removeEventListener('copy', copyHandler);
+      }
+    }
+  }, []);
   return <div class="session-container">
     <h1>{pageTitle}</h1>
     <h3>{subtitle}</h3>
