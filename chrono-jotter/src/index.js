@@ -2,7 +2,6 @@ import 'components/style';
 import './style';
 import {useEffect} from 'preact/hooks';
 import {MessageList} from 'components/MessageList.js';
-import classnames from 'classnames';
 
 const Index = ({sessions}) =>
   <div class="index">
@@ -26,7 +25,7 @@ const Index = ({sessions}) =>
 
 const SessionNav = ({session, type}) =>
   !session ? <div/> :
-  <a class={classnames('nav-link', `nav-link--${type}`)} href={session.url}>
+  <a class={`nav-link nav-link--${type}`} href={session.url}>
     {type === 'next' ?
       <div class="nav-link_header">Next: <strong>{session.pageTitle}</strong></div> :
       <div class="nav-link_header">Previously: <strong>{session.pageTitle}</strong></div>

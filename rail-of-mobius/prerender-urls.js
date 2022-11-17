@@ -53,7 +53,7 @@ const sessions = [
   url: `/part-${i + 1}`,
   title: `Rail of Mobius: Part ${i + 1}`,
   pageTitle: `Part ${i + 1}`,
-  allSessions,
+  index: i,
   ...session,
 }));
 
@@ -87,7 +87,8 @@ channelExport.messages.forEach(message => {
 module.exports = () => [
   ...sessions.map((session, i) => ({
     ...session,
-    messages: sessionMessages[i]
+    messages: sessionMessages[i],
+    allSessions: sessions,
   })),
   ...pages,
 ];
