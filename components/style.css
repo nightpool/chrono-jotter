@@ -202,7 +202,7 @@ h3 {
   grid-template-columns: 1fr var(--avatar-width);
   text-align: right;
   width: fit-content;
-  align-self: end;
+  align-self: flex-end;
 }
 
 @media (min-width: 60rem) {
