@@ -1,10 +1,22 @@
-import {useState} from 'preact/hooks';
+import {useState, useContext} from 'preact/hooks';
+import MessageContext from './MessageContext';
 import classnames from 'classnames';
 
 const join = (seperator, array) =>
   array.flatMap((element, index) => 
     index == 0 ? [element] : [seperator, element]
   );
+
+export const plainTextFormat = ({content, mentions}) => {
+  content.replaceAll(/<@!?(\d+)>/g, (_, userId) => {
+    const mention = mentions.find(m => m.id === userId);
+    if (mention) {
+      return `@${mention.nickname}`;
+    } else {
+      return '@Unknown';
+    }
+  });
+}
 
 export const formatMessage = (content) => {
   const output = [];
@@ -101,7 +113,7 @@ const formatBlockquote = (lines) => {
     output.push(formatInline(lines.shift().replace(/^> /, '')));
   }
 
-  return <blockquote>{join("\n", output)}</blockquote>;
+  return <blockquote>{output.map(p => <p>{p}</p>)}</blockquote>;
 }
 
 const formatInline = (message) => {
@@ -134,7 +146,8 @@ const inlineFormattingRegexs = [
   ['spoiler', /\|\|(.+?)\|\|/],
   ['link', /<(https?:\/\/[^\s>]*[^.,:;"'\s>])>/],
   ['link', /(https?:\/\/\S*[^.,:;"'\s>])/],
-  ['emoji', /<:(\w+:\d+)>/]
+  ['mention', /<@!?(\d+)>/],
+  ['emoji', /<(a?:\w+:\d+)>/],
 ];
 
 const Spoiler = ({children}) => {
@@ -148,6 +161,34 @@ const Spoiler = ({children}) => {
   >{children}</button>;
 }
 
+const InlineEmoji = ({emojiCode}) => {
+  const [animated, shortcode, id] = emojiCode.split(":");
+  const ext = animated ? 'gif' : 'png';
+
+  return <img
+    alt={shortcode}
+    title={shortcode}
+    loading="lazy"
+    fetchpriority="low"
+    src={`https://cdn.discordapp.com/emojis/${id}.${ext}`}
+    style="height: 1rem; vertical-align: bottom;"
+  />;
+}
+
+const UserMention = ({userId}) => {
+  const {mentions} = useContext(MessageContext);
+  const mention = mentions.find(m => m.id === userId);
+  let mentionText;
+
+  if (!mention) {
+    mentionText = '@Unknown';
+  } else {
+    mentionText = `@${mention.nickname}`;
+  }
+
+  return <span class="mention">{mentionText}</span>
+};
+
 const formatting = {
   bold:         s => <strong>{formatInline(s)}</strong>,
   italic:       s => <em>{formatInline(s)}</em>,
@@ -157,10 +198,8 @@ const formatting = {
   strike:       s => <s>{formatInline(s)}</s>,
   spoiler:      s => <Spoiler>{formatInline(s)}</Spoiler>,
   link:         s => <a href={s}>{s}</a>,
-  emoji:        s => {
-    const [title, id] = s.split(':');
-    return <img alt={title} title={title} src={`https://cdn.discordapp.com/emojis/${id}.png`} style="height: 1rem; vertical-align: bottom;" />;
-  },
+  mention:      s => <UserMention userId={s} />,
+  emoji:        s => <InlineEmoji emojiCode={s} />,
 };
 
 const combinedRegexp = new RegExp(Object.values(inlineFormattingRegexs).flat().map(i => `(?:${i.source})`).join('|'), 'g');
