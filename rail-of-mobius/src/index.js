@@ -15,6 +15,7 @@ const Index = ({sessions}) =>
         <a href={s.url}><li>{s.pageTitle}{s.subtitle && <>: <i>{s.subtitle}</i></>}</li></a>
       )}
     </ul>
+    <footer>See also: <a href="https://chrono-jotter.netlify.app">The Chrono Jotter</a></footer>
   </div>;
 
 const SessionNav = ({session, type}) =>

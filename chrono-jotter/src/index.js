@@ -11,7 +11,7 @@ const Index = ({sessions}) =>
       Ran Ibuki wakes up in an abandoned school with a lot of memory problems and not a lot of answers. All she knows is that she’s looking for her missing girlfriend. Things get... weirder, from there.
     </div>
     <div class="game-description">
-      Chrono Jotter is a visual novel by Orca Layout. This website is an archive of a translation/let's play of the game done by Zerovirus and the TFTBN discord. <a href="https://store.steampowered.com/app/1398740/The_Chrono_Jotter/">Purchase the game on Steam</a>.
+      Chrono Jotter is a visual novel by Orca Layout. This website is an archive of a translation/let's play of the game done by Zerovirus and the TFTBN discord. The translation used in this LP formed the basis of the new English version of the game, <a href="https://store.steampowered.com/app/1398740/The_Chrono_Jotter/">please support the developers and purchase the game on Steam</a>.
     </div>
     <div class="cw">
       <strong>Content Warning:</strong> Chrono Jotter contains graphic depictions of suicide, gore, and self-harm. Reader discretion is advised.
@@ -21,6 +21,7 @@ const Index = ({sessions}) =>
         <a href={s.url}><li>{s.pageTitle}: <i>{s.subtitle}</i></li></a>
       )}
     </ul>
+    <footer>See also: <a href="https://rail-of-mobius.netlify.app">The Rail Of Mobius</a></footer>
   </div>;
 
 const SessionNav = ({session, type}) =>
