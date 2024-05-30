@@ -7,7 +7,7 @@ const join = (seperator, array) =>
     index == 0 ? [element] : [seperator, element]
   );
 
-export const plainTextFormat = ({content, mentions}) => {
+export const plainTextFormat = ({content, mentions}) =>
   content.replaceAll(/<@!?(\d+)>/g, (_, userId) => {
     const mention = mentions.find(m => m.id === userId);
     if (mention) {
@@ -16,7 +16,6 @@ export const plainTextFormat = ({content, mentions}) => {
       return '@Unknown';
     }
   });
-}
 
 export const formatMessage = (content) => {
   const output = [];
